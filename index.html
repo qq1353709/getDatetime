@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title>获取当月日历表数据</title>
+	<style>
+
+		.main{padding:20px 0;max-width:640px;margin:0 auto;}
+		.main .line.line-title{padding:16px 0;line-height:48px;color:#727171;font-size:30px;}
+		.main .line:after{content: "020"; display: block; height: 0; clear: both;visibility:hidden;}
+		.main .line .child{position:relative;font-size:30px;color:#727171;width:14.2857%;line-height:56px;padding:8px 0;float:left;text-align:center;font-weight:bold;font-family: 'NotoSans';}
+		.main .line .child p{position:relative;z-index:1;}
+		.main .line .child .bg{position:absolute;top:0px;bottom:0px;left:0px;right:0px;margin:auto;width:50px;height:50px;line-height:50px;text-align:center;border-radius:50px;-webkit-border-radius:50px;}
+		.main .line .child.no{color:#c9caca;}
+		.main .line .child.on{color:#FF8303;}
+		.main .line .child.on .bg{border:1px solid #FF8303;}
+		.main .line .child.on1{color:#fff;}
+		.main .line .child.on1 .bg{background:#f3c1cd;}
+		.main .line .child.on2{color:#fff;}
+		.main .line .child.on2 .bg{background:#e5859b;}
+		@media (max-width: 639px) {
+		.main{padding:12px 0;}
+		.main .line.line-title{padding:6px 0;line-height:24px;font-size:16px;}
+		.main .line .child{font-size:16px;line-height:30px;padding:4px 0;}
+		.main .line .child .bg{width:30px;height:30px;line-height:30px;}
+		}
+
+	</style>
+	<script src="jquery.js"></script>
+	<script src="dydong.getDatetime.js"></script>
+	<script type="text/javascript">
+
+	
+		function build(){
+			var 
+				data=[],
+				year=$("#year").val(),
+				month=$("#month").val(),
+				day=$("#day").val();
+
+			if(year&&month&&day)
+				data=$.getDatetime({'date':new Date(year,month,day)});
+			else
+				data=$.getDatetime();
+			console.log(data);
+			
+			$.each(data["data"],function(i,n){
+				var ele=$(".main .line-date .child:eq("+i+")"),
+					classname="date"+data["data"][i]["year"]+data["data"][i]["month"]+data["data"][i]["day"],
+					datetime=data["data"][i]["year"]+""+data["data"][i]["month"]+""+data["data"][i]["day"],
+					day=data["data"][i]["day"],
+					status=data["data"][i]["status"];
+
+				ele.addClass(classname).attr("data-datetime",datetime);
+				ele.find("p").html(day);
+				if(status!=1){ele.addClass("no");}
+			})
+		}
+		
+		$(function(){
+			build();
+		});
+	</script>
+</head>
+	
+<body>
+<input type="text" id="year" placeholder="2016">
+<input type="text" id="month" placeholder="12">
+<input type="text" id="day" placeholder="1">
+<input type="button" value="提交" onclick="build()">
+<!-- main -->
+<div class="main">
+<div class="container">
+	
+	<div class="line line-title">
+    	<div class="child"><p>日</p></div>
+        <div class="child"><p>一</p></div>
+        <div class="child"><p>二</p></div>
+        <div class="child"><p>三</p></div>
+        <div class="child"><p>四</p></div>
+        <div class="child"><p>五</p></div>
+        <div class="child"><p>六</p></div>
+    </div>
+        
+    <div class="line line-date">
+    	<div class="child"><p></p><div class="bg"></div></div>
+    	<div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+    </div>
+    <div class="line line-date">
+    	<div class="child"><p></p><div class="bg"></div></div>
+    	<div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+    </div>
+    <div class="line line-date">
+    	<div class="child"><p></p><div class="bg"></div></div>
+    	<div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+    </div>
+    <div class="line line-date">
+    	<div class="child"><p></p><div class="bg"></div></div>
+    	<div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+    </div>
+    <div class="line line-date">
+    	<div class="child"><p></p><div class="bg"></div></div>
+    	<div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+        <div class="child"><p></p><div class="bg"></div></div>
+    </div>
+    
+    
+</div>
+</div>
+
+<!-- main over -->
+</body>
+
+</html>
