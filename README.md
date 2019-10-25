@@ -19,4 +19,3 @@ var data=$.getDatetime({'date':new Date(YYYY,MM,DD)});	//指定时间的日历�
 |   	|-- month                    	//月份       
 |   	|-- day                    		//日期    
 ```
-#### by [http://www.dydong.com]
